@@ -1,15 +1,13 @@
 import requests
 
-# API URL (Replace with your actual Render API URL)
+# ✅ Ensure this URL matches your Render deployment
 url = "https://fastapi-gpt-api.onrender.com/upload/"
 
-# Path to the PDF file you want to upload (Make sure the file exists)
-file_path = "example.pdf"
+file_path = "example.pdf"  # Ensure this file exists
 
-# Open the file and send it to the API
+# Upload the file
 with open(file_path, "rb") as file:
     files = {"file": file}
     response = requests.post(url, files=files)
 
-# Print the response from the API
-print(response.json())
+print(response.json())  # See the API response
