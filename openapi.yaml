@@ -1,43 +1,15 @@
 openapi: 3.1.0
 info:
-  title: Bedrijfs API
+  title: Klachten Memo Samenvatter
   version: 1.0.0
-  description: API om klantgegevens op te halen en offertes aan te maken.
+  description: API om vrije klachtenmemo's samen te vatten in vaste rapportagestructuur.
 servers:
   - url: https://fastapi-gpt-api-1.onrender.com
 paths:
-  /klanten/{klant_id}:
-    get:
-      summary: Haal klantgegevens op via klant-ID
-      operationId: getKlant
-      parameters:
-        - name: klant_id
-          in: path
-          required: true
-          description: Unieke klant-ID
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Succesvolle response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  naam:
-                    type: string
-                  email:
-                    type: string
-                  telefoon:
-                    type: string
-
-  /offertes:
+  /verwerk_memo:
     post:
-      summary: Maak een nieuwe offerte aan
-      operationId: createOfferte
+      summary: Verwerk een klachtenmemo en vat samen in 3 onderdelen
+      operationId: verwerkMemo
       requestBody:
         required: true
         content:
@@ -45,22 +17,19 @@ paths:
             schema:
               type: object
               properties:
-                klantId:
+                tekst:
                   type: string
-                beschrijving:
-                  type: string
-                bedrag:
-                  type: number
-                  format: float
       responses:
-        '201':
-          description: Offerte succesvol aangemaakt
+        '200':
+          description: Samenvatting gegenereerd
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  offerteId:
+                  onderzoek:
                     type: string
-                  status:
+                  herstel:
+                    type: string
+                  evaluatie:
                     type: string
