@@ -1,6 +1,0 @@
-fastapi
-uvicorn
-pypdf
-chromadb
-sentence-transformers
-openai
