@@ -1,14 +1,21 @@
 openapi: 3.1.0
 info:
-  title: Klachten Memo Samenvatter
-  version: 1.0.0
-  description: API om vrije klachtenmemo's samen te vatten in vaste rapportagestructuur.
+  title: Klachtenmemo Samenvatter met GPT
+  version: 1.2.0
+  description: |
+    Deze API gebruikt GPT-4 om klachtenmemo’s automatisch samen te vatten in zes onderdelen:
+    1. Onderzoek van de klacht
+    2. Herstel en uitvoering
+    3. Evaluatie en verbetermaatregelen
+    4. Tijdlijn van gebeurtenissen
+    5. Betrokken personen of afdelingen
+    6. Juridische implicaties
 servers:
   - url: https://fastapi-gpt-api-1.onrender.com
 paths:
   /verwerk_memo:
     post:
-      summary: Verwerk een klachtenmemo en vat samen in 3 onderdelen
+      summary: Verwerk een klachtenmemo in 6 onderdelen via GPT
       operationId: verwerkMemo
       requestBody:
         required: true
@@ -21,7 +28,7 @@ paths:
                   type: string
       responses:
         '200':
-          description: Samenvatting gegenereerd
+          description: Samenvatting gegenereerd door GPT
           content:
             application/json:
               schema:
@@ -32,4 +39,10 @@ paths:
                   herstel:
                     type: string
                   evaluatie:
+                    type: string
+                  tijdlijn:
+                    type: string
+                  betrokkenen:
+                    type: string
+                  juridisch:
                     type: string
